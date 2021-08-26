@@ -69,4 +69,20 @@ where e.position = p.code  and abs( p.income  - (select avg(p1.income)
 -- Fist find the avg income then do another query for comaprision
 
 
+select e.position, count(e.number) as total
+from employee e, position p where (e.position = p.code) P.INCOME >   
+avg(income) 
+from position p1, employee e1
+where e1.position = p1.code) GROUP BY p.code;
 
+--
+select p1.code, d1.name, p1.title, h1.start_date, e1.name
+from employee e1, department d1, position p1, history h1
+where e1.department = d1.code 
+and h1.employee = e1.number 
+and h1.position = p1.code 
+and (p.code, h1.startdate in
+						select h.position, h.startdate 
+						from history h, employee e 
+						where e.number = h.employee
+						group by h.position);
